@@ -11,4 +11,8 @@ public class ToastUtil {
     public Toast toast(Context context, String content) {
         return Toast.makeText(context, content, Toast.LENGTH_SHORT);
     }
+
+    public Toast toast(Context context, String content, int time) {
+        return Toast.makeText(context, content, time);
+    }
 }
