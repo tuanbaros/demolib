@@ -1,21 +1,23 @@
 language: android
+sudo: false
 android:
   components:
     - tools
     - platform-tools
     - build-tools-26.0.0
     - android-26
-    - extra-android-m2repository
 jdk:
   - oraclejdk8
+env:
+  global:
+    secure: Bvj+wEgD/LRVUJ/GF2t4856LPq1z6PsEZH4orzldYg1rzNIMxhHS6K4/9tW6wgh0GipT69oNOok6PiTn0uN5D6qg2enqftbEf3nqQUcxPRnbhItIEGd+L0WdpUA2K31D7rjq4gKOD+9Ky9vcZqD2f2WpzPE4JHx64sixTLRojeubqA3UldmsuzW8kq2fwBauEYNEzjFOikgrYV7TriEkM/oxVeDe6a/PkSrthP8nLRvUBxO5Qw94qqVXC/F6cIGTUIVuxIyPBpBJP81Zb/ksMCzM4W8zWLyvuoquqi9v7vzU3i0ZlMNxZqqK59BExesmrA6gOem6W9WNOra3xz76G61Dl2j17NJ4xWZ+a5GdOZZMOfECazI3Ew6lpLN3T4qVdqDPD3c4Es9COXXDQZN3/9gbcBcdBQmVgiTcEyobn0Mfw76keqdxZ1X4VE8jYjFt5I+CrlcNpEyuMRLTm5bIg2V/qALcidT3HiBcCWcNN1E546+5E1EPTS/xxkyn0jR6Ymj3m9G1sQ2LtGk0mH/pjOW39Z2J0TUcPqscbOz9Hc4hF8dPy0F2QQHkaAG59ocIg/BTbdiDrg+GLnRcvMzMqEn80QXz8usDcJ9RWQALTuIFmr3qH+qTofqQa+mzCBVAi5r/4Kff/A5+QPjcCJraL5Pz64AoMy8XvnObeeDUSHU=
 script:
-  - cd demolib
-  - ./gradlew build connectedCheck
+  - ./gradlew build violationCommentsToGitHub -DGITHUB_PULLREQUESTID=$TRAVIS_PULL_REQUEST -DGITHUB_OAUTH2TOKEN=$GITHUB_OAUTH2TOKEN -i --stacktrace
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
     - $HOME/.m2
     - $HOME/.gradle/caches/
-- $HOME/.gradle/wrapper/
+    - $HOME/.gradle/wrapper/
 
